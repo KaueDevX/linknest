@@ -1,0 +1,34 @@
+{
+  "name": "linknest",
+  "version": "1.0.0",
+  "description": "API para gerenciar coleções de links pessoais com autenticação, visibilidade pública/privada e rotas compartilháveis. Projeto focado em praticar estruturação de aplicações back-end com Node.js.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaueDevX/linknest.git"
+  },
+  "keywords": [
+    "LinkNest"
+  ],
+  "author": "KaueDevX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KaueDevX/linknest/issues"
+  },
+  "homepage": "https://github.com/KaueDevX/linknest#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.24.0"
+  }
+}
