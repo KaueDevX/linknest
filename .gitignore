@@ -1,5 +1,6 @@
 # Pastas excluidas para GitHub
 node_modules
 # Arquivos excluidos para Repo GitHub
-
+.eslintrc.json
+eslint.config.mjs
 .env
