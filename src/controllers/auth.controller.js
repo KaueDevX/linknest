@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const { hashPassword } = require("../services/bcrypt");
+const { hashPassword, comparePassword } = require("../services/bcrypt");
 class authController {
   async register(req, res) {
     const { username, password } = req.body;
@@ -35,6 +35,37 @@ class authController {
         message: "Error creating user",
       });
     }
+  }
+  async login(req, res) {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(422).json({
+        success: false,
+        message: "Params empty or invalid",
+      });
+    }
+    const result = await User.findOne({ username });
+    if (!result) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credential" });
+    }
+    const isValid = await comparePassword(password, result.password);
+    if (isValid) {
+      return res.status(200).json({
+        success: true,
+        message: "Login successfully",
+        data: {
+          username: result.username,
+          creatorId: result.creatorId,
+          createdAt: result.created_at,
+        },
+      });
+    }
+    return res.status(401).json({
+      success: false,
+      message: "Invalid credential",
+    });
   }
 }
 
