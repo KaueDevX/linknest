@@ -5,14 +5,14 @@ const CollectionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: false,
+  },
   collectionId: {
     type: String,
     required: true,
     unique: true,
-  },
-  description: {
-    type: String,
-    required: false,
   },
   slug: {
     type: String,
