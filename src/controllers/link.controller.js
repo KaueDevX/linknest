@@ -56,6 +56,23 @@ class LinkController {
       });
     }
   }
+  async getLinks(req, res) {
+    const { creatorId } = req.user;
+    try {
+      const links = await Link.find({ creatorId });
+      return res.status(200).json({
+        success: true,
+        data: links,
+        message: "Links retrieved successfully",
+      });
+    } catch (error) {
+      console.log("Error getting links", error.name);
+      return res.status(500).json({
+        success: false,
+        message: "Error getting links",
+      });
+    }
+  }
   async getLinksByCollectionId(req, res) {
     const { collection_id } = req.params;
     const { creatorId } = req.user;
