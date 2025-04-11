@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 config();
 
-const mongoUrl = process.env.MONGO_URL || "";
+const mongoUrl = process.env.MONGO_URI || "";
 
 const connection = async function connection() {
   if (mongoUrl == "") return new Error("Get URL MongoDB");
