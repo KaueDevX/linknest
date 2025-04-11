@@ -12,9 +12,11 @@ app.use(Security);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const AuthRouter = require("./routers/auth.routers");
+const AuthRouter = require("./routes/auth.routes");
+const UserRouter = require("./routes/user.routes");
 
 app.use("/api/auth", AuthRouter);
+app.use("/api/user", UserRouter);
 
 app.listen(process.env.PORT, async () => {
   await Connection();

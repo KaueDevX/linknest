@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const { hashPassword, comparePassword } = require("../services/bcrypt");
+const jwt = require("jsonwebtoken");
 class authController {
   async register(req, res) {
     const { username, password } = req.body;
@@ -52,6 +53,16 @@ class authController {
     }
     const isValid = await comparePassword(password, result.password);
     if (isValid) {
+      const token = jwt.sign(
+        {
+          id: result._id,
+          username: result.username,
+          creatorId: result.creatorId,
+          createdAt: result.created_at,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN }
+      );
       return res.status(200).json({
         success: true,
         message: "Login successfully",
@@ -59,6 +70,7 @@ class authController {
           username: result.username,
           creatorId: result.creatorId,
           createdAt: result.created_at,
+          token,
         },
       });
     }
