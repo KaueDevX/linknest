@@ -4,7 +4,7 @@ const LinkController = require("../controllers/link.controller");
 
 const { createLink, getLinks, getLinksByCollectionId, updateLink, deleteLink } =
   new LinkController();
-const verifyToken = require("../middleware/verifyToken");
+const verifyToken = require("../middlewares/auth.middleware");
 
 router.post("/", verifyToken, createLink);
 router.get("/", verifyToken, getLinks);
