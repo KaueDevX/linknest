@@ -21,7 +21,6 @@ class CollectionController {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/\s+/g, "-");
-      console.log(req.user);
       const collection = new Collection({
         title,
         description,
@@ -43,7 +42,7 @@ class CollectionController {
     }
   }
   async getCollections(req, res) {
-    const result = await Collection.find({ creatorId: req.creatorId });
+    const result = await Collection.find({ creatorId: req.user.creatorId });
     if (!result) {
       return res.status(401).json({
         success: false,
